@@ -2881,7 +2881,6 @@ id bounceBoth
 id bounceEnd
 id bounceStart
 id button
-id button2
 id buttonPanel
 id cache_measures
 id callMeasure
@@ -2974,8 +2973,6 @@ id easeIn
 id easeInOut
 id easeOut
 id east
-id editTextTextPersonName
-id editTextTextPersonName2
 id edit_query
 id edit_text
 id edittext_dropdown_editable
@@ -2988,6 +2985,8 @@ id endToStart
 id end_padder
 id enterAlways
 id enterAlwaysCollapsed
+id et_firstCure
+id et_secondCure
 id exitUntilCollapsed
 id expand_activities_button
 id expand_collapse
