@@ -2644,6 +2644,8 @@ drawable design_snackbar_background
 drawable edit_to_confirm_anim
 drawable googleg_disabled_color_18
 drawable googleg_standard_color_18
+drawable ic_baseline_favorite_24
+drawable ic_baseline_favorite_border_24
 drawable ic_clock_black_24dp
 drawable ic_collapse_holo_light
 drawable ic_collapse_large_holo_light
@@ -2780,8 +2782,6 @@ id SHOW_ALL
 id SHOW_PATH
 id SHOW_PROGRESS
 id SYM
-id SpineerFirstCuuncy
-id SpineerSecondCuuncy
 id TOP_END
 id TOP_START
 id ThreeBounce
@@ -2833,6 +2833,8 @@ id action_bar_root
 id action_bar_spinner
 id action_bar_subtitle
 id action_bar_title
+id action_breedsFragment2_to_dogbreedFragment
+id action_breedsFragment2_to_favFragment
 id action_container
 id action_context_bar
 id action_divider
@@ -2859,6 +2861,7 @@ id animateToEnd
 id animateToStart
 id antiClockwise
 id anticipate
+id app_navigation
 id arc
 id arrowviewpager_leftarrow
 id arrowviewpager_rightarrow
@@ -2880,6 +2883,7 @@ id bounce
 id bounceBoth
 id bounceEnd
 id bounceStart
+id breedsFragment2
 id button
 id buttonPanel
 id cache_measures
@@ -2958,6 +2962,7 @@ id disablePostScroll
 id disableScroll
 id disjoint
 id divider
+id dogbreedFragment
 id dragAnticlockwise
 id dragClockwise
 id dragDown
@@ -2985,8 +2990,7 @@ id endToStart
 id end_padder
 id enterAlways
 id enterAlwaysCollapsed
-id et_firstCure
-id et_secondCure
+id errorTextView
 id exitUntilCollapsed
 id expand_activities_button
 id expand_collapse
@@ -2994,6 +2998,7 @@ id expandable_text
 id expanded_menu
 id expandingscrollview_container
 id fade
+id favFragment
 id fill
 id fill_horizontal
 id fill_vertical
@@ -3055,6 +3060,7 @@ id inward
 id is_hidden_after_clipped
 id italic
 id item_touch_helper_previous_elevation
+id iv_breedImage
 id jumpToEnd
 id jumpToStart
 id labeled
@@ -3136,7 +3142,7 @@ id mtrl_picker_text_input_range_start
 id mtrl_picker_title_text
 id mtrl_view_tag_bottom_padding
 id multiply
-id myCont
+id my_nav_host_fragment
 id mylocation_button
 id mylocationhud_stub
 id name_textview
@@ -3186,6 +3192,7 @@ id pin
 id placepage_directions_button
 id position
 id postLayout
+id progressBar
 id progress_bar
 id progress_circular
 id progress_horizontal
@@ -3195,6 +3202,7 @@ id radio
 id ratio
 id rectangles
 id renderable_components_applier
+id retryButton
 id reverseSawtooth
 id right
 id rightToLeft
@@ -3202,6 +3210,8 @@ id right_icon
 id right_side
 id rounded
 id row_index_key
+id rv_breeds
+id rv_images
 id satellite
 id satellite_button
 id save_non_transition_alpha
@@ -3254,6 +3264,7 @@ id snackbar_text
 id snap
 id snapMargins
 id south
+id sp_filter
 id spacer
 id special_effects_controller_view_tag
 id spline
@@ -3337,6 +3348,8 @@ id transition_position
 id transition_scene_layoutid_cache
 id transition_transform
 id triangle
+id tv_fav
+id tv_name
 id ue3_params
 id unchecked
 id uniform
@@ -3482,7 +3495,10 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
-layout fragment_veracity
+layout dog_breed_fragment
+layout fav_fragment
+layout fragment_breeds
+layout loading_error
 layout m3_alert_dialog
 layout m3_alert_dialog_actions
 layout m3_alert_dialog_title
@@ -3568,8 +3584,11 @@ layout text_view_with_line_height_from_style
 layout text_view_with_theme_line_height
 layout text_view_without_line_height
 layout view_toggle_edit_text
+layout viewholder_breed
+layout viewholder_breed_image
 mipmap ic_launcher
 mipmap ic_launcher_round
+navigation app_navigation
 plurals mtrl_badge_content_description
 string MAP_COPYRIGHTS_FULL
 string MAP_COPYRIGHTS_GOOGLE_ONLY

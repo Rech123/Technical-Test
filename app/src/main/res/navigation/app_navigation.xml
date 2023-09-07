@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_navigation"
+    app:startDestination="@id/breedsFragment2">
+    <fragment
+        android:id="@+id/breedsFragment2"
+        android:name="com.example.flowexample.breedsList.presentation.ui.fragments.BreedsFragment"
+        android:label="BreedsFragment"
+        tools:layout="@layout/fragment_breeds">
+        <action
+            android:id="@+id/action_breedsFragment2_to_dogbreedFragment"
+            app:destination="@id/dogbreedFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popUpTo="@id/breedsFragment2" />
+        <action
+            android:id="@+id/action_breedsFragment2_to_favFragment"
+            app:destination="@id/favFragment" />
+    </fragment>
+
+    <fragment android:id="@+id/favFragment"
+        android:name="com.example.flowexample.favorite.presentation.ui.fragments.FavoriteFragment"
+        android:label="fragment_fav"
+        tools:layout="@layout/dog_breed_fragment"/>
+
+
+    <fragment android:id="@+id/dogbreedFragment"
+        android:name="com.example.flowexample.dogbreed.presentation.ui.fragments.DogBreedFragment"
+        android:label="fragment_my_second"
+        tools:layout="@layout/dog_breed_fragment">
+
+        <argument
+            android:name="breadName"
+            app:argType="string"
+            android:defaultValue=""/>
+    </fragment>
+</navigation>

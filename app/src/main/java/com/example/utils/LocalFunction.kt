@@ -2,8 +2,14 @@ package com.example.utils
 
 import android.content.Context
 import android.util.Log
+import androidx.room.Room
 import com.example.flowexample.core.App
 import com.example.flowexample.core.api.RestWebService
+import com.example.flowexample.core.database.AppDatabase
+import com.example.flowexample.core.di.modules.DatabaseModule
+import net.sqlcipher.database.SQLiteDatabase
+import net.sqlcipher.database.SQLiteDatabaseHook
+import net.sqlcipher.database.SupportFactory
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -12,6 +18,7 @@ import java.util.concurrent.TimeUnit
 class LocalFunction {
 
     companion object {
+        private var INSTANCE: AppDatabase? = null
         fun getRestService(
             context: Context,
             app: App,
@@ -68,5 +75,38 @@ class LocalFunction {
             Log.d("tag", "printLn: ${s}")
 
         }
+
+        fun getAppDatabase(mContext: Context, dbName: String): AppDatabase {
+            if (INSTANCE == null) {
+                synchronized(AppDatabase::class.java) {
+                    if (INSTANCE == null) {
+                        val builder = Room.databaseBuilder(
+                            mContext,
+                            AppDatabase::class.java,
+                            dbName
+                        )
+                        val hook: SQLiteDatabaseHook = object : SQLiteDatabaseHook {
+                            override fun preKey(database: SQLiteDatabase?) {}
+                            override fun postKey(database: SQLiteDatabase) {
+                                printLn("postKey>>>>>>>>>>>>>>")
+                                database.rawExecSQL("PRAGMA cipher_memory_security = OFF;")
+                            }
+                        }
+                        val factory = SupportFactory(
+                            SQLiteDatabase.getBytes(DatabaseModule.EN_KEY.toCharArray()),
+                            hook
+                        )
+                        builder.openHelperFactory(factory)
+                        builder.fallbackToDestructiveMigration()
+                        builder.enableMultiInstanceInvalidation()
+
+                        INSTANCE = builder.build()
+                    }
+                }
+            }
+            printLn("INSTANCE>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + INSTANCE)
+            return INSTANCE!!
+        }
+
     }
 }

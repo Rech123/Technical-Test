@@ -1,10 +1,7 @@
 package com.example.flowexample.core.di.components
 
 import com.example.flowexample.core.App
-import com.example.flowexample.core.di.modules.ActivityInjectorsModule
-import com.example.flowexample.core.di.modules.AppModule
-import com.example.flowexample.core.di.modules.FragmentInjectorsModule
-import com.example.flowexample.core.di.modules.NetworkModule
+import com.example.flowexample.core.di.modules.*
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.support.AndroidSupportInjectionModule
@@ -18,7 +15,7 @@ import javax.inject.Singleton
         ActivityInjectorsModule::class,
         FragmentInjectorsModule::class,
         NetworkModule::class,
-       // DatabaseModule::class,
+        DatabaseModule::class,
         AppModule::class]
 )
 interface AppComponent {

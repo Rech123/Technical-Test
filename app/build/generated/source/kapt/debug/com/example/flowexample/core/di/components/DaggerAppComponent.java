@@ -2,26 +2,47 @@
 package com.example.flowexample.core.di.components;
 
 import android.content.Context;
+import com.example.flowexample.breedsList.data.BreedsRepository;
+import com.example.flowexample.breedsList.di.BreedListModule;
+import com.example.flowexample.breedsList.di.BreedListModule_ProvideVeracityiewModelFactory;
+import com.example.flowexample.breedsList.di.BreedListModule_ProvidesCurrencyRepostioryFactory;
+import com.example.flowexample.breedsList.presentation.ui.activites.MainActivity;
+import com.example.flowexample.breedsList.presentation.ui.fragments.BreedsFragment;
+import com.example.flowexample.breedsList.presentation.ui.fragments.BreedsFragment_MembersInjector;
+import com.example.flowexample.breedsList.presentation.viewmodels.BreedsVidewModel;
+import com.example.flowexample.breedsList.presentation.viewmodels.BreedsVidewModel_Factory;
 import com.example.flowexample.core.App;
 import com.example.flowexample.core.App_MembersInjector;
 import com.example.flowexample.core.api.RestWebService;
+import com.example.flowexample.core.database.AppDatabase;
 import com.example.flowexample.core.di.modules.ActivityInjectorsModule_VeracityActivityInjector;
 import com.example.flowexample.core.di.modules.AppModule;
 import com.example.flowexample.core.di.modules.AppModule_ProvideApplicationContextFactory;
-import com.example.flowexample.core.di.modules.FragmentInjectorsModule_VeracityFragmentInjector;
+import com.example.flowexample.core.di.modules.DatabaseModule;
+import com.example.flowexample.core.di.modules.DatabaseModule_ProvideDatabaseFactory;
+import com.example.flowexample.core.di.modules.FragmentInjectorsModule_BreedsListFragmentInjector;
+import com.example.flowexample.core.di.modules.FragmentInjectorsModule_DogBreedFragmentInjector;
+import com.example.flowexample.core.di.modules.FragmentInjectorsModule_FavoriteFragmentInjector;
 import com.example.flowexample.core.di.modules.InjectionViewModelProvider;
 import com.example.flowexample.core.di.modules.InjectionViewModelProvider_Factory;
 import com.example.flowexample.core.di.modules.NetworkModule;
 import com.example.flowexample.core.di.modules.NetworkModule_ProvideRestServiceFactory;
-import com.example.flowexample.veracity.data.CurrencyRepostiory;
-import com.example.flowexample.veracity.di.VeracityModule;
-import com.example.flowexample.veracity.di.VeracityModule_ProvideVeracityiewModelFactory;
-import com.example.flowexample.veracity.di.VeracityModule_ProvidesCurrencyRepostioryFactory;
-import com.example.flowexample.veracity.presentation.ui.activites.VeracityActivity;
-import com.example.flowexample.veracity.presentation.ui.fragments.VeracityFragment;
-import com.example.flowexample.veracity.presentation.ui.fragments.VeracityFragment_MembersInjector;
-import com.example.flowexample.veracity.presentation.viewmodels.VeracityViewModel;
-import com.example.flowexample.veracity.presentation.viewmodels.VeracityViewModel_Factory;
+import com.example.flowexample.dogbreed.data.DogBreedsReporiotry;
+import com.example.flowexample.dogbreed.di.DogBreedModule;
+import com.example.flowexample.dogbreed.di.DogBreedModule_ProvideDogBreedViewModelFactory;
+import com.example.flowexample.dogbreed.di.DogBreedModule_ProvidesCurrencyRepostioryFactory;
+import com.example.flowexample.dogbreed.presentation.ui.fragments.DogBreedFragment;
+import com.example.flowexample.dogbreed.presentation.ui.fragments.DogBreedFragment_MembersInjector;
+import com.example.flowexample.dogbreed.viewmodels.DogBreedViewModel;
+import com.example.flowexample.dogbreed.viewmodels.DogBreedViewModel_Factory;
+import com.example.flowexample.favorite.data.FavRebository;
+import com.example.flowexample.favorite.di.FavModule;
+import com.example.flowexample.favorite.di.FavModule_ProvideFaviewModelFactory;
+import com.example.flowexample.favorite.di.FavModule_ProvidesFavRebositoryFactory;
+import com.example.flowexample.favorite.presentation.ui.fragments.FavoriteFragment;
+import com.example.flowexample.favorite.presentation.ui.fragments.FavoriteFragment_MembersInjector;
+import com.example.flowexample.favorite.viewmodels.FavViewModel;
+import com.example.flowexample.favorite.viewmodels.FavViewModel_Factory;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.DispatchingAndroidInjector_Factory;
@@ -44,9 +65,13 @@ import javax.inject.Provider;
 public final class DaggerAppComponent implements AppComponent {
   private final DaggerAppComponent appComponent = this;
 
-  private Provider<ActivityInjectorsModule_VeracityActivityInjector.VeracityActivitySubcomponent.Factory> veracityActivitySubcomponentFactoryProvider;
+  private Provider<ActivityInjectorsModule_VeracityActivityInjector.MainActivitySubcomponent.Factory> mainActivitySubcomponentFactoryProvider;
 
-  private Provider<FragmentInjectorsModule_VeracityFragmentInjector.VeracityFragmentSubcomponent.Factory> veracityFragmentSubcomponentFactoryProvider;
+  private Provider<FragmentInjectorsModule_BreedsListFragmentInjector.BreedsFragmentSubcomponent.Factory> breedsFragmentSubcomponentFactoryProvider;
+
+  private Provider<FragmentInjectorsModule_DogBreedFragmentInjector.DogBreedFragmentSubcomponent.Factory> dogBreedFragmentSubcomponentFactoryProvider;
+
+  private Provider<FragmentInjectorsModule_FavoriteFragmentInjector.FavoriteFragmentSubcomponent.Factory> favoriteFragmentSubcomponentFactoryProvider;
 
   private Provider<App> applicationProvider;
 
@@ -54,10 +79,12 @@ public final class DaggerAppComponent implements AppComponent {
 
   private Provider<RestWebService> provideRestServiceProvider;
 
-  private DaggerAppComponent(NetworkModule networkModuleParam, AppModule appModuleParam,
-      App applicationParam) {
+  private Provider<AppDatabase> provideDatabaseProvider;
 
-    initialize(networkModuleParam, appModuleParam, applicationParam);
+  private DaggerAppComponent(NetworkModule networkModuleParam, DatabaseModule databaseModuleParam,
+      AppModule appModuleParam, App applicationParam) {
+
+    initialize(networkModuleParam, databaseModuleParam, appModuleParam, applicationParam);
 
   }
 
@@ -67,7 +94,7 @@ public final class DaggerAppComponent implements AppComponent {
 
   private Map<Class<?>, Provider<AndroidInjector.Factory<?>>> mapOfClassOfAndProviderOfAndroidInjectorFactoryOf(
       ) {
-    return MapBuilder.<Class<?>, Provider<AndroidInjector.Factory<?>>>newMapBuilder(2).put(VeracityActivity.class, ((Provider) veracityActivitySubcomponentFactoryProvider)).put(VeracityFragment.class, ((Provider) veracityFragmentSubcomponentFactoryProvider)).build();
+    return MapBuilder.<Class<?>, Provider<AndroidInjector.Factory<?>>>newMapBuilder(4).put(MainActivity.class, ((Provider) mainActivitySubcomponentFactoryProvider)).put(BreedsFragment.class, ((Provider) breedsFragmentSubcomponentFactoryProvider)).put(DogBreedFragment.class, ((Provider) dogBreedFragmentSubcomponentFactoryProvider)).put(FavoriteFragment.class, ((Provider) favoriteFragmentSubcomponentFactoryProvider)).build();
   }
 
   private DispatchingAndroidInjector<Object> dispatchingAndroidInjectorOfObject() {
@@ -75,25 +102,41 @@ public final class DaggerAppComponent implements AppComponent {
   }
 
   @SuppressWarnings("unchecked")
-  private void initialize(final NetworkModule networkModuleParam, final AppModule appModuleParam,
+  private void initialize(final NetworkModule networkModuleParam,
+      final DatabaseModule databaseModuleParam, final AppModule appModuleParam,
       final App applicationParam) {
-    this.veracityActivitySubcomponentFactoryProvider = new Provider<ActivityInjectorsModule_VeracityActivityInjector.VeracityActivitySubcomponent.Factory>() {
+    this.mainActivitySubcomponentFactoryProvider = new Provider<ActivityInjectorsModule_VeracityActivityInjector.MainActivitySubcomponent.Factory>() {
       @Override
-      public ActivityInjectorsModule_VeracityActivityInjector.VeracityActivitySubcomponent.Factory get(
+      public ActivityInjectorsModule_VeracityActivityInjector.MainActivitySubcomponent.Factory get(
           ) {
-        return new VeracityActivitySubcomponentFactory(appComponent);
+        return new MainActivitySubcomponentFactory(appComponent);
       }
     };
-    this.veracityFragmentSubcomponentFactoryProvider = new Provider<FragmentInjectorsModule_VeracityFragmentInjector.VeracityFragmentSubcomponent.Factory>() {
+    this.breedsFragmentSubcomponentFactoryProvider = new Provider<FragmentInjectorsModule_BreedsListFragmentInjector.BreedsFragmentSubcomponent.Factory>() {
       @Override
-      public FragmentInjectorsModule_VeracityFragmentInjector.VeracityFragmentSubcomponent.Factory get(
+      public FragmentInjectorsModule_BreedsListFragmentInjector.BreedsFragmentSubcomponent.Factory get(
           ) {
-        return new VeracityFragmentSubcomponentFactory(appComponent);
+        return new BreedsFragmentSubcomponentFactory(appComponent);
+      }
+    };
+    this.dogBreedFragmentSubcomponentFactoryProvider = new Provider<FragmentInjectorsModule_DogBreedFragmentInjector.DogBreedFragmentSubcomponent.Factory>() {
+      @Override
+      public FragmentInjectorsModule_DogBreedFragmentInjector.DogBreedFragmentSubcomponent.Factory get(
+          ) {
+        return new DogBreedFragmentSubcomponentFactory(appComponent);
+      }
+    };
+    this.favoriteFragmentSubcomponentFactoryProvider = new Provider<FragmentInjectorsModule_FavoriteFragmentInjector.FavoriteFragmentSubcomponent.Factory>() {
+      @Override
+      public FragmentInjectorsModule_FavoriteFragmentInjector.FavoriteFragmentSubcomponent.Factory get(
+          ) {
+        return new FavoriteFragmentSubcomponentFactory(appComponent);
       }
     };
     this.applicationProvider = InstanceFactory.create(applicationParam);
     this.provideApplicationContextProvider = DoubleCheck.provider(AppModule_ProvideApplicationContextFactory.create(appModuleParam, applicationProvider));
     this.provideRestServiceProvider = NetworkModule_ProvideRestServiceFactory.create(networkModuleParam, provideApplicationContextProvider, applicationProvider);
+    this.provideDatabaseProvider = DatabaseModule_ProvideDatabaseFactory.create(databaseModuleParam, provideApplicationContextProvider);
   }
 
   @Override
@@ -118,104 +161,222 @@ public final class DaggerAppComponent implements AppComponent {
     @Override
     public AppComponent build() {
       Preconditions.checkBuilderRequirement(application, App.class);
-      return new DaggerAppComponent(new NetworkModule(), new AppModule(), application);
+      return new DaggerAppComponent(new NetworkModule(), new DatabaseModule(), new AppModule(), application);
     }
   }
 
-  private static final class VeracityActivitySubcomponentFactory implements ActivityInjectorsModule_VeracityActivityInjector.VeracityActivitySubcomponent.Factory {
+  private static final class MainActivitySubcomponentFactory implements ActivityInjectorsModule_VeracityActivityInjector.MainActivitySubcomponent.Factory {
     private final DaggerAppComponent appComponent;
 
-    private VeracityActivitySubcomponentFactory(DaggerAppComponent appComponent) {
+    private MainActivitySubcomponentFactory(DaggerAppComponent appComponent) {
       this.appComponent = appComponent;
     }
 
     @Override
-    public ActivityInjectorsModule_VeracityActivityInjector.VeracityActivitySubcomponent create(
-        VeracityActivity arg0) {
+    public ActivityInjectorsModule_VeracityActivityInjector.MainActivitySubcomponent create(
+        MainActivity arg0) {
       Preconditions.checkNotNull(arg0);
-      return new VeracityActivitySubcomponentImpl(appComponent, arg0);
+      return new MainActivitySubcomponentImpl(appComponent, arg0);
     }
   }
 
-  private static final class VeracityFragmentSubcomponentFactory implements FragmentInjectorsModule_VeracityFragmentInjector.VeracityFragmentSubcomponent.Factory {
+  private static final class BreedsFragmentSubcomponentFactory implements FragmentInjectorsModule_BreedsListFragmentInjector.BreedsFragmentSubcomponent.Factory {
     private final DaggerAppComponent appComponent;
 
-    private VeracityFragmentSubcomponentFactory(DaggerAppComponent appComponent) {
+    private BreedsFragmentSubcomponentFactory(DaggerAppComponent appComponent) {
       this.appComponent = appComponent;
     }
 
     @Override
-    public FragmentInjectorsModule_VeracityFragmentInjector.VeracityFragmentSubcomponent create(
-        VeracityFragment arg0) {
+    public FragmentInjectorsModule_BreedsListFragmentInjector.BreedsFragmentSubcomponent create(
+        BreedsFragment arg0) {
       Preconditions.checkNotNull(arg0);
-      return new VeracityFragmentSubcomponentImpl(appComponent, new VeracityModule(), arg0);
+      return new BreedsFragmentSubcomponentImpl(appComponent, new BreedListModule(), arg0);
     }
   }
 
-  private static final class VeracityActivitySubcomponentImpl implements ActivityInjectorsModule_VeracityActivityInjector.VeracityActivitySubcomponent {
+  private static final class DogBreedFragmentSubcomponentFactory implements FragmentInjectorsModule_DogBreedFragmentInjector.DogBreedFragmentSubcomponent.Factory {
     private final DaggerAppComponent appComponent;
 
-    private final VeracityActivitySubcomponentImpl veracityActivitySubcomponentImpl = this;
+    private DogBreedFragmentSubcomponentFactory(DaggerAppComponent appComponent) {
+      this.appComponent = appComponent;
+    }
 
-    private VeracityActivitySubcomponentImpl(DaggerAppComponent appComponent,
-        VeracityActivity arg0Param) {
+    @Override
+    public FragmentInjectorsModule_DogBreedFragmentInjector.DogBreedFragmentSubcomponent create(
+        DogBreedFragment arg0) {
+      Preconditions.checkNotNull(arg0);
+      return new DogBreedFragmentSubcomponentImpl(appComponent, new DogBreedModule(), arg0);
+    }
+  }
+
+  private static final class FavoriteFragmentSubcomponentFactory implements FragmentInjectorsModule_FavoriteFragmentInjector.FavoriteFragmentSubcomponent.Factory {
+    private final DaggerAppComponent appComponent;
+
+    private FavoriteFragmentSubcomponentFactory(DaggerAppComponent appComponent) {
+      this.appComponent = appComponent;
+    }
+
+    @Override
+    public FragmentInjectorsModule_FavoriteFragmentInjector.FavoriteFragmentSubcomponent create(
+        FavoriteFragment arg0) {
+      Preconditions.checkNotNull(arg0);
+      return new FavoriteFragmentSubcomponentImpl(appComponent, new FavModule(), arg0);
+    }
+  }
+
+  private static final class MainActivitySubcomponentImpl implements ActivityInjectorsModule_VeracityActivityInjector.MainActivitySubcomponent {
+    private final DaggerAppComponent appComponent;
+
+    private final MainActivitySubcomponentImpl mainActivitySubcomponentImpl = this;
+
+    private MainActivitySubcomponentImpl(DaggerAppComponent appComponent, MainActivity arg0Param) {
       this.appComponent = appComponent;
 
 
     }
 
     @Override
-    public void inject(VeracityActivity arg0) {
-      injectVeracityActivity(arg0);
+    public void inject(MainActivity arg0) {
+      injectMainActivity(arg0);
     }
 
-    private VeracityActivity injectVeracityActivity(VeracityActivity instance) {
+    private MainActivity injectMainActivity(MainActivity instance) {
       DaggerAppCompatActivity_MembersInjector.injectAndroidInjector(instance, appComponent.dispatchingAndroidInjectorOfObject());
       return instance;
     }
   }
 
-  private static final class VeracityFragmentSubcomponentImpl implements FragmentInjectorsModule_VeracityFragmentInjector.VeracityFragmentSubcomponent {
+  private static final class BreedsFragmentSubcomponentImpl implements FragmentInjectorsModule_BreedsListFragmentInjector.BreedsFragmentSubcomponent {
     private final DaggerAppComponent appComponent;
 
-    private final VeracityFragmentSubcomponentImpl veracityFragmentSubcomponentImpl = this;
+    private final BreedsFragmentSubcomponentImpl breedsFragmentSubcomponentImpl = this;
 
-    private Provider<VeracityFragment> arg0Provider;
+    private Provider<BreedsFragment> arg0Provider;
 
-    private Provider<CurrencyRepostiory> providesCurrencyRepostioryProvider;
+    private Provider<BreedsRepository> providesCurrencyRepostioryProvider;
 
-    private Provider<VeracityViewModel> veracityViewModelProvider;
+    private Provider<BreedsVidewModel> breedsVidewModelProvider;
 
-    private Provider<InjectionViewModelProvider<VeracityViewModel>> injectionViewModelProvider;
+    private Provider<InjectionViewModelProvider<BreedsVidewModel>> injectionViewModelProvider;
 
-    private Provider<VeracityViewModel> provideVeracityiewModelProvider;
+    private Provider<BreedsVidewModel> provideVeracityiewModelProvider;
 
-    private VeracityFragmentSubcomponentImpl(DaggerAppComponent appComponent,
-        VeracityModule veracityModuleParam, VeracityFragment arg0Param) {
+    private BreedsFragmentSubcomponentImpl(DaggerAppComponent appComponent,
+        BreedListModule breedListModuleParam, BreedsFragment arg0Param) {
       this.appComponent = appComponent;
 
-      initialize(veracityModuleParam, arg0Param);
+      initialize(breedListModuleParam, arg0Param);
 
     }
 
     @SuppressWarnings("unchecked")
-    private void initialize(final VeracityModule veracityModuleParam,
-        final VeracityFragment arg0Param) {
+    private void initialize(final BreedListModule breedListModuleParam,
+        final BreedsFragment arg0Param) {
       this.arg0Provider = InstanceFactory.create(arg0Param);
-      this.providesCurrencyRepostioryProvider = VeracityModule_ProvidesCurrencyRepostioryFactory.create(veracityModuleParam, appComponent.provideRestServiceProvider);
-      this.veracityViewModelProvider = VeracityViewModel_Factory.create(providesCurrencyRepostioryProvider);
-      this.injectionViewModelProvider = InjectionViewModelProvider_Factory.create(veracityViewModelProvider);
-      this.provideVeracityiewModelProvider = VeracityModule_ProvideVeracityiewModelFactory.create(veracityModuleParam, arg0Provider, injectionViewModelProvider);
+      this.providesCurrencyRepostioryProvider = BreedListModule_ProvidesCurrencyRepostioryFactory.create(breedListModuleParam, appComponent.provideRestServiceProvider);
+      this.breedsVidewModelProvider = BreedsVidewModel_Factory.create(providesCurrencyRepostioryProvider);
+      this.injectionViewModelProvider = InjectionViewModelProvider_Factory.create(breedsVidewModelProvider);
+      this.provideVeracityiewModelProvider = BreedListModule_ProvideVeracityiewModelFactory.create(breedListModuleParam, arg0Provider, injectionViewModelProvider);
     }
 
     @Override
-    public void inject(VeracityFragment arg0) {
-      injectVeracityFragment(arg0);
+    public void inject(BreedsFragment arg0) {
+      injectBreedsFragment(arg0);
     }
 
-    private VeracityFragment injectVeracityFragment(VeracityFragment instance) {
+    private BreedsFragment injectBreedsFragment(BreedsFragment instance) {
       DaggerFragment_MembersInjector.injectAndroidInjector(instance, appComponent.dispatchingAndroidInjectorOfObject());
-      VeracityFragment_MembersInjector.injectViewModel(instance, DoubleCheck.lazy(provideVeracityiewModelProvider));
+      BreedsFragment_MembersInjector.injectViewModel(instance, DoubleCheck.lazy(provideVeracityiewModelProvider));
+      return instance;
+    }
+  }
+
+  private static final class DogBreedFragmentSubcomponentImpl implements FragmentInjectorsModule_DogBreedFragmentInjector.DogBreedFragmentSubcomponent {
+    private final DaggerAppComponent appComponent;
+
+    private final DogBreedFragmentSubcomponentImpl dogBreedFragmentSubcomponentImpl = this;
+
+    private Provider<DogBreedFragment> arg0Provider;
+
+    private Provider<DogBreedsReporiotry> providesCurrencyRepostioryProvider;
+
+    private Provider<DogBreedViewModel> dogBreedViewModelProvider;
+
+    private Provider<InjectionViewModelProvider<DogBreedViewModel>> injectionViewModelProvider;
+
+    private Provider<DogBreedViewModel> provideDogBreedViewModelProvider;
+
+    private DogBreedFragmentSubcomponentImpl(DaggerAppComponent appComponent,
+        DogBreedModule dogBreedModuleParam, DogBreedFragment arg0Param) {
+      this.appComponent = appComponent;
+
+      initialize(dogBreedModuleParam, arg0Param);
+
+    }
+
+    @SuppressWarnings("unchecked")
+    private void initialize(final DogBreedModule dogBreedModuleParam,
+        final DogBreedFragment arg0Param) {
+      this.arg0Provider = InstanceFactory.create(arg0Param);
+      this.providesCurrencyRepostioryProvider = DogBreedModule_ProvidesCurrencyRepostioryFactory.create(dogBreedModuleParam, appComponent.provideRestServiceProvider, appComponent.provideDatabaseProvider);
+      this.dogBreedViewModelProvider = DogBreedViewModel_Factory.create(providesCurrencyRepostioryProvider);
+      this.injectionViewModelProvider = InjectionViewModelProvider_Factory.create(dogBreedViewModelProvider);
+      this.provideDogBreedViewModelProvider = DogBreedModule_ProvideDogBreedViewModelFactory.create(dogBreedModuleParam, arg0Provider, injectionViewModelProvider);
+    }
+
+    @Override
+    public void inject(DogBreedFragment arg0) {
+      injectDogBreedFragment(arg0);
+    }
+
+    private DogBreedFragment injectDogBreedFragment(DogBreedFragment instance) {
+      DaggerFragment_MembersInjector.injectAndroidInjector(instance, appComponent.dispatchingAndroidInjectorOfObject());
+      DogBreedFragment_MembersInjector.injectViewModel(instance, DoubleCheck.lazy(provideDogBreedViewModelProvider));
+      return instance;
+    }
+  }
+
+  private static final class FavoriteFragmentSubcomponentImpl implements FragmentInjectorsModule_FavoriteFragmentInjector.FavoriteFragmentSubcomponent {
+    private final DaggerAppComponent appComponent;
+
+    private final FavoriteFragmentSubcomponentImpl favoriteFragmentSubcomponentImpl = this;
+
+    private Provider<FavoriteFragment> arg0Provider;
+
+    private Provider<FavRebository> providesFavRebositoryProvider;
+
+    private Provider<FavViewModel> favViewModelProvider;
+
+    private Provider<InjectionViewModelProvider<FavViewModel>> injectionViewModelProvider;
+
+    private Provider<FavViewModel> provideFaviewModelProvider;
+
+    private FavoriteFragmentSubcomponentImpl(DaggerAppComponent appComponent,
+        FavModule favModuleParam, FavoriteFragment arg0Param) {
+      this.appComponent = appComponent;
+
+      initialize(favModuleParam, arg0Param);
+
+    }
+
+    @SuppressWarnings("unchecked")
+    private void initialize(final FavModule favModuleParam, final FavoriteFragment arg0Param) {
+      this.arg0Provider = InstanceFactory.create(arg0Param);
+      this.providesFavRebositoryProvider = FavModule_ProvidesFavRebositoryFactory.create(favModuleParam, appComponent.provideRestServiceProvider, appComponent.provideDatabaseProvider);
+      this.favViewModelProvider = FavViewModel_Factory.create(providesFavRebositoryProvider);
+      this.injectionViewModelProvider = InjectionViewModelProvider_Factory.create(favViewModelProvider);
+      this.provideFaviewModelProvider = FavModule_ProvideFaviewModelFactory.create(favModuleParam, arg0Provider, injectionViewModelProvider);
+    }
+
+    @Override
+    public void inject(FavoriteFragment arg0) {
+      injectFavoriteFragment(arg0);
+    }
+
+    private FavoriteFragment injectFavoriteFragment(FavoriteFragment instance) {
+      DaggerFragment_MembersInjector.injectAndroidInjector(instance, appComponent.dispatchingAndroidInjectorOfObject());
+      FavoriteFragment_MembersInjector.injectViewModel(instance, DoubleCheck.lazy(provideFaviewModelProvider));
       return instance;
     }
   }

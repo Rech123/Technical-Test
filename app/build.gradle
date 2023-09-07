@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: "androidx.navigation.safeargs.kotlin"
 android {
     compileSdk 33
 
@@ -158,4 +159,13 @@ implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.google.maps.android:android-maps-utils:2.0.3'
 
     implementation 'com.camerash:toggleedittextview:0.1.1'
+    def nav_version = '2.1.0-beta01'
+    def nav_version_ktx = '2.1.0-beta01'
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version_ktx"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version_ktx"
+
+    // glide
+    implementation 'com.github.bumptech.glide:glide:4.14.1'
+    // Glide v4 uses this new annotation processor -- see https://bumptech.github.io/glide/doc/generatedapi.html
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.14.1'
 }

@@ -14,7 +14,7 @@
         android:theme="@style/Theme.FlowExample">
 
         <activity
-            android:name=".veracity.presentation.ui.activites.VeracityActivity"
+            android:name=".breedsList.presentation.ui.activites.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

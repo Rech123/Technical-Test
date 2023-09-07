@@ -39,7 +39,7 @@
         android:testOnly="true"
         android:theme="@style/Theme.FlowExample" >
         <activity
-            android:name="com.example.flowexample.veracity.presentation.ui.activites.VeracityActivity"
+            android:name="com.example.flowexample.breedsList.presentation.ui.activites.MainActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

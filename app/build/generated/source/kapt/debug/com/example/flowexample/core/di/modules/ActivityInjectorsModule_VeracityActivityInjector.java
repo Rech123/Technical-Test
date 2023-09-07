@@ -1,6 +1,6 @@
 package com.example.flowexample.core.di.modules;
 
-import com.example.flowexample.veracity.presentation.ui.activites.VeracityActivity;
+import com.example.flowexample.breedsList.presentation.ui.activites.MainActivity;
 import dagger.Binds;
 import dagger.Module;
 import dagger.Subcomponent;
@@ -9,21 +9,20 @@ import dagger.multibindings.ClassKey;
 import dagger.multibindings.IntoMap;
 
 @Module(
-  subcomponents =
-      ActivityInjectorsModule_VeracityActivityInjector.VeracityActivitySubcomponent.class
+  subcomponents = ActivityInjectorsModule_VeracityActivityInjector.MainActivitySubcomponent.class
 )
 public abstract class ActivityInjectorsModule_VeracityActivityInjector {
   private ActivityInjectorsModule_VeracityActivityInjector() {}
 
   @Binds
   @IntoMap
-  @ClassKey(VeracityActivity.class)
+  @ClassKey(MainActivity.class)
   abstract AndroidInjector.Factory<?> bindAndroidInjectorFactory(
-      VeracityActivitySubcomponent.Factory builder);
+      MainActivitySubcomponent.Factory builder);
 
   @Subcomponent
-  public interface VeracityActivitySubcomponent extends AndroidInjector<VeracityActivity> {
+  public interface MainActivitySubcomponent extends AndroidInjector<MainActivity> {
     @Subcomponent.Factory
-    interface Factory extends AndroidInjector.Factory<VeracityActivity> {}
+    interface Factory extends AndroidInjector.Factory<MainActivity> {}
   }
 }

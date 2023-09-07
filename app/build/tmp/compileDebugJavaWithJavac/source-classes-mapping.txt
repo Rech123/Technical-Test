@@ -1,67 +1,108 @@
 com/example/utils/NoInternetConnection.java
  com.example.utils.NoInternetConnection
-androidx/databinding/DataBindingComponent.java
- androidx.databinding.DataBindingComponent
 com/example/flowexample/core/di/modules/InjectionViewModelProvider_Factory.java
  com.example.flowexample.core.di.modules.InjectionViewModelProvider_Factory
-com/example/flowexample/BR.java
- com.example.flowexample.BR
-com/example/flowexample/DataBindingTriggerClass.java
- com.example.flowexample.DataBindingTriggerClass
-com/example/flowexample/DataBinderMapperImpl.java
- com.example.flowexample.DataBinderMapperImpl
- com.example.flowexample.DataBinderMapperImpl$InnerBrLookup
- com.example.flowexample.DataBinderMapperImpl$InnerLayoutIdLookup
-androidx/databinding/DataBinderMapperImpl.java
- androidx.databinding.DataBinderMapperImpl
-com/example/utils/Retry.java
- com.example.utils.Retry
+androidx/databinding/DataBindingComponent.java
+ androidx.databinding.DataBindingComponent
+com/example/flowexample/core/database/dao/FavDao_Impl.java
+ com.example.flowexample.core.database.dao.FavDao_Impl
+ com.example.flowexample.core.database.dao.FavDao_Impl$1
+ com.example.flowexample.core.database.dao.FavDao_Impl$2
+ com.example.flowexample.core.database.dao.FavDao_Impl$3
+ com.example.flowexample.core.database.dao.FavDao_Impl$4
 com/example/utils/RetryCllAdapterFactory.java
  com.example.utils.RetryCllAdapterFactory
  com.example.utils.RetryCllAdapterFactory$RetryCallAdapter
  com.example.utils.RetryCllAdapterFactory$RetryCallback
  com.example.utils.RetryCllAdapterFactory$RetryingCall
-com/example/flowexample/databinding/ActivityMainBinding.java
- com.example.flowexample.databinding.ActivityMainBinding
-androidx/databinding/library/baseAdapters/BR.java
- androidx.databinding.library.baseAdapters.BR
-com/example/flowexample/databinding/ActivityMainBindingImpl.java
- com.example.flowexample.databinding.ActivityMainBindingImpl
+androidx/databinding/DataBinderMapperImpl.java
+ androidx.databinding.DataBinderMapperImpl
+com/example/flowexample/core/di/modules/ActivityInjectorsModule_VeracityActivityInjector.java
+ com.example.flowexample.core.di.modules.ActivityInjectorsModule_VeracityActivityInjector
+ com.example.flowexample.core.di.modules.ActivityInjectorsModule_VeracityActivityInjector$MainActivitySubcomponent
+ com.example.flowexample.core.di.modules.ActivityInjectorsModule_VeracityActivityInjector$MainActivitySubcomponent$Factory
 com/example/flowexample/BuildConfig.java
  com.example.flowexample.BuildConfig
-com/example/flowexample/veracity/presentation/viewmodels/VeracityViewModel_Factory.java
- com.example.flowexample.veracity.presentation.viewmodels.VeracityViewModel_Factory
+androidx/databinding/library/baseAdapters/BR.java
+ androidx.databinding.library.baseAdapters.BR
+com/example/flowexample/core/database/AppDatabase_Impl.java
+ com.example.flowexample.core.database.AppDatabase_Impl
+ com.example.flowexample.core.database.AppDatabase_Impl$1
+com/example/flowexample/DataBinderMapperImpl.java
+ com.example.flowexample.DataBinderMapperImpl
+ com.example.flowexample.DataBinderMapperImpl$InnerBrLookup
+ com.example.flowexample.DataBinderMapperImpl$InnerLayoutIdLookup
+com/example/flowexample/DataBindingTriggerClass.java
+ com.example.flowexample.DataBindingTriggerClass
+com/example/flowexample/databinding/ActivityMainBindingImpl.java
+ com.example.flowexample.databinding.ActivityMainBindingImpl
+com/example/flowexample/BR.java
+ com.example.flowexample.BR
+com/example/flowexample/databinding/ActivityMainBinding.java
+ com.example.flowexample.databinding.ActivityMainBinding
+com/example/utils/Retry.java
+ com.example.utils.Retry
+com/example/flowexample/favorite/viewmodels/FavViewModel_Factory.java
+ com.example.flowexample.favorite.viewmodels.FavViewModel_Factory
 com/example/flowexample/core/di/modules/NetworkModule_ProvideRestServiceFactory.java
  com.example.flowexample.core.di.modules.NetworkModule_ProvideRestServiceFactory
-com/example/flowexample/veracity/di/VeracityModule_ProvidesCurrencyRepostioryFactory.java
- com.example.flowexample.veracity.di.VeracityModule_ProvidesCurrencyRepostioryFactory
-com/example/flowexample/core/di/modules/AppModule_ProvideApplicationContextFactory.java
- com.example.flowexample.core.di.modules.AppModule_ProvideApplicationContextFactory
-com/example/flowexample/veracity/presentation/ui/fragments/VeracityFragment_MembersInjector.java
- com.example.flowexample.veracity.presentation.ui.fragments.VeracityFragment_MembersInjector
-com/example/flowexample/core/App_MembersInjector.java
- com.example.flowexample.core.App_MembersInjector
+com/example/flowexample/breedsList/presentation/ui/fragments/BreedsFragment_MembersInjector.java
+ com.example.flowexample.breedsList.presentation.ui.fragments.BreedsFragment_MembersInjector
+com/example/flowexample/dogbreed/di/DogBreedModule_ProvideDogBreedViewModelFactory.java
+ com.example.flowexample.dogbreed.di.DogBreedModule_ProvideDogBreedViewModelFactory
+com/example/flowexample/dogbreed/viewmodels/DogBreedViewModel_Factory.java
+ com.example.flowexample.dogbreed.viewmodels.DogBreedViewModel_Factory
+com/example/flowexample/favorite/di/FavModule_ProvidesFavRebositoryFactory.java
+ com.example.flowexample.favorite.di.FavModule_ProvidesFavRebositoryFactory
+com/example/flowexample/core/di/modules/FragmentInjectorsModule_BreedsListFragmentInjector.java
+ com.example.flowexample.core.di.modules.FragmentInjectorsModule_BreedsListFragmentInjector
+ com.example.flowexample.core.di.modules.FragmentInjectorsModule_BreedsListFragmentInjector$BreedsFragmentSubcomponent
+ com.example.flowexample.core.di.modules.FragmentInjectorsModule_BreedsListFragmentInjector$BreedsFragmentSubcomponent$Factory
 com/example/flowexample/core/di/components/DaggerAppComponent.java
  com.example.flowexample.core.di.components.DaggerAppComponent
  com.example.flowexample.core.di.components.DaggerAppComponent$1
  com.example.flowexample.core.di.components.DaggerAppComponent$2
+ com.example.flowexample.core.di.components.DaggerAppComponent$3
+ com.example.flowexample.core.di.components.DaggerAppComponent$4
+ com.example.flowexample.core.di.components.DaggerAppComponent$BreedsFragmentSubcomponentFactory
+ com.example.flowexample.core.di.components.DaggerAppComponent$BreedsFragmentSubcomponentImpl
  com.example.flowexample.core.di.components.DaggerAppComponent$Builder
- com.example.flowexample.core.di.components.DaggerAppComponent$VeracityActivitySubcomponentFactory
- com.example.flowexample.core.di.components.DaggerAppComponent$VeracityActivitySubcomponentImpl
- com.example.flowexample.core.di.components.DaggerAppComponent$VeracityFragmentSubcomponentFactory
- com.example.flowexample.core.di.components.DaggerAppComponent$VeracityFragmentSubcomponentImpl
+ com.example.flowexample.core.di.components.DaggerAppComponent$DogBreedFragmentSubcomponentFactory
+ com.example.flowexample.core.di.components.DaggerAppComponent$DogBreedFragmentSubcomponentImpl
+ com.example.flowexample.core.di.components.DaggerAppComponent$FavoriteFragmentSubcomponentFactory
+ com.example.flowexample.core.di.components.DaggerAppComponent$FavoriteFragmentSubcomponentImpl
+ com.example.flowexample.core.di.components.DaggerAppComponent$MainActivitySubcomponentFactory
+ com.example.flowexample.core.di.components.DaggerAppComponent$MainActivitySubcomponentImpl
+com/example/flowexample/breedsList/di/BreedListModule_ProvideVeracityiewModelFactory.java
+ com.example.flowexample.breedsList.di.BreedListModule_ProvideVeracityiewModelFactory
 com/example/flowexample/core/di/modules/AppModule_ProvideApplicationFactory.java
  com.example.flowexample.core.di.modules.AppModule_ProvideApplicationFactory
-com/example/flowexample/veracity/di/VeracityModule_ProvideVeracityiewModelFactory.java
- com.example.flowexample.veracity.di.VeracityModule_ProvideVeracityiewModelFactory
-com/example/flowexample/core/di/modules/FragmentInjectorsModule_VeracityFragmentInjector.java
- com.example.flowexample.core.di.modules.FragmentInjectorsModule_VeracityFragmentInjector
- com.example.flowexample.core.di.modules.FragmentInjectorsModule_VeracityFragmentInjector$VeracityFragmentSubcomponent
- com.example.flowexample.core.di.modules.FragmentInjectorsModule_VeracityFragmentInjector$VeracityFragmentSubcomponent$Factory
-com/example/flowexample/core/di/modules/ActivityInjectorsModule_VeracityActivityInjector.java
- com.example.flowexample.core.di.modules.ActivityInjectorsModule_VeracityActivityInjector
- com.example.flowexample.core.di.modules.ActivityInjectorsModule_VeracityActivityInjector$VeracityActivitySubcomponent
- com.example.flowexample.core.di.modules.ActivityInjectorsModule_VeracityActivityInjector$VeracityActivitySubcomponent$Factory
+com/example/flowexample/core/di/modules/DatabaseModule_ProvideDatabaseFactory.java
+ com.example.flowexample.core.di.modules.DatabaseModule_ProvideDatabaseFactory
+com/example/flowexample/breedsList/presentation/viewmodels/BreedsVidewModel_Factory.java
+ com.example.flowexample.breedsList.presentation.viewmodels.BreedsVidewModel_Factory
 com/example/flowexample/core/util/ResponseHandler_Factory.java
  com.example.flowexample.core.util.ResponseHandler_Factory
  com.example.flowexample.core.util.ResponseHandler_Factory$InstanceHolder
+com/example/flowexample/dogbreed/di/DogBreedModule_ProvidesCurrencyRepostioryFactory.java
+ com.example.flowexample.dogbreed.di.DogBreedModule_ProvidesCurrencyRepostioryFactory
+com/example/flowexample/dogbreed/presentation/ui/fragments/DogBreedFragment_MembersInjector.java
+ com.example.flowexample.dogbreed.presentation.ui.fragments.DogBreedFragment_MembersInjector
+com/example/flowexample/favorite/presentation/ui/fragments/FavoriteFragment_MembersInjector.java
+ com.example.flowexample.favorite.presentation.ui.fragments.FavoriteFragment_MembersInjector
+com/example/flowexample/core/di/modules/FragmentInjectorsModule_FavoriteFragmentInjector.java
+ com.example.flowexample.core.di.modules.FragmentInjectorsModule_FavoriteFragmentInjector
+ com.example.flowexample.core.di.modules.FragmentInjectorsModule_FavoriteFragmentInjector$FavoriteFragmentSubcomponent
+ com.example.flowexample.core.di.modules.FragmentInjectorsModule_FavoriteFragmentInjector$FavoriteFragmentSubcomponent$Factory
+com/example/flowexample/favorite/di/FavModule_ProvideFaviewModelFactory.java
+ com.example.flowexample.favorite.di.FavModule_ProvideFaviewModelFactory
+com/example/flowexample/core/di/modules/AppModule_ProvideApplicationContextFactory.java
+ com.example.flowexample.core.di.modules.AppModule_ProvideApplicationContextFactory
+com/example/flowexample/breedsList/di/BreedListModule_ProvidesCurrencyRepostioryFactory.java
+ com.example.flowexample.breedsList.di.BreedListModule_ProvidesCurrencyRepostioryFactory
+com/example/flowexample/core/App_MembersInjector.java
+ com.example.flowexample.core.App_MembersInjector
+com/example/flowexample/core/di/modules/FragmentInjectorsModule_DogBreedFragmentInjector.java
+ com.example.flowexample.core.di.modules.FragmentInjectorsModule_DogBreedFragmentInjector
+ com.example.flowexample.core.di.modules.FragmentInjectorsModule_DogBreedFragmentInjector$DogBreedFragmentSubcomponent
+ com.example.flowexample.core.di.modules.FragmentInjectorsModule_DogBreedFragmentInjector$DogBreedFragmentSubcomponent$Factory
