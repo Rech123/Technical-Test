@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/FlowExample/app/src/main/res/layout/activity_main.xml" value="0.17831813576494426" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/FlowExample/app/src/main/res/layout/activity_veracity.xml" value="0.23777173913043478" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/FlowExample/app/src/main/res/layout/dog_breed_fragment.xml" value="0.128125" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/FlowExample/app/src/main/res/layout/fav_fragment.xml" value="0.14673913043478262" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/FlowExample/app/src/main/res/layout/fragment_breeds.xml" value="0.11911231884057971" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/FlowExample/app/src/main/res/layout/fragment_veracity.xml" value="0.23777173913043478" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/FlowExample/app/src/main/res/layout/loading_error.xml" value="0.125" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/FlowExample/app/src/main/res/layout/new_activity.xml" value="0.20625" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/FlowExample/app/src/main/res/layout/viewholder_breed.xml" value="0.22" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/FlowExample/app/src/main/res/layout/viewholder_breed_image.xml" value="0.33" />
+        <entry key="..\:/Users/DELL/AppData/Local/Android/Sdk/platforms/android-33/data/res/layout/activity_list_item.xml" value="0.11911231884057971" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
