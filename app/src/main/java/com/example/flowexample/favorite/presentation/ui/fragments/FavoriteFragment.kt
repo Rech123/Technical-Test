@@ -111,7 +111,7 @@ class FavoriteFragment : BaseFragment(), AdapterView.OnItemSelectedListener {
                 return
             }
             if(filterList?.size>1) {
-                (filterList as ArrayList).set(0, "All")
+                (filterList as ArrayList).add(0, "All")
             }
             filterAdapter = ArrayAdapter<String>(
                 mActivity!!,
